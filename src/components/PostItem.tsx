@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { IPost } from '../models/IPost'
 import PostImage from './PostImage'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,14 @@ interface PostItemProps {
 }
 
 const PostItem: FC<PostItemProps> = ({ post }) => {
+	const [isExpanded, setIsExpanded] = useState(false)
+
+	function toggleExpand() {
+		setIsExpanded(prev => !prev)
+	}
+
+	const isPostEmpty = post.explanation.length === 0
+
 	if (post.media_type !== 'image') {
 		return null
 	}
@@ -21,11 +29,19 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
 			</figure>
 			<div className="media-content">
 				<div className="content">
-					<p>
+					<div>
 						<strong>{post.title}</strong> <small>{post.date}</small>
 						<br />
-						{post.explanation.length > 0 ? post.explanation : 'Post is empty!'}
-					</p>
+						{isExpanded
+							? post.explanation
+							: post.explanation.slice(0, 300) + '...'}
+						{!isPostEmpty && post.explanation.length > 300 && (
+							<p className="expand-trigger" onClick={toggleExpand}>
+								{isExpanded ? 'Show less' : 'Show more'}
+							</p>
+						)}
+						{isPostEmpty && 'This post is empty! 😓'}
+					</div>
 				</div>
 			</div>
 			<div className="media-right">
