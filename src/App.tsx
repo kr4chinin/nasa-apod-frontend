@@ -1,12 +1,12 @@
-import Login from './pages/Login'
-import Registration from './pages/Registration'
+import { HashRouter } from "react-router-dom"
+import AppRoutes from "./AppRoutes"
+
 
 function App() {
 	return (
-        <div className="App">
-            {/* <Login /> */}
-            <Registration />
-        </div>
+        <HashRouter>
+            <AppRoutes />
+        </HashRouter>
     )
 }
 
