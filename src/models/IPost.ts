@@ -1,8 +1,8 @@
 export interface IPost {
-    media_type: string
+	media_type: string
 	title: string
 	url: string
 	explanation: string
 	date: string
-    copyright: string
+	copyright: string
 }

@@ -6,21 +6,16 @@ import {
 import { FC } from 'react'
 
 interface NavbarProps {
-    buttonTitle: string
+	buttonTitle: string
 }
 
-const Navbar: FC<NavbarProps> = ({buttonTitle}) => {
+const Navbar: FC<NavbarProps> = ({ buttonTitle }) => {
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
-				<p className="navbar-item">
-					Astronomica 🪐
-				</p>
+				<p className="navbar-item">Astronomica 🪐</p>
 
-				<p
-					role="button"
-					className="navbar-burger"
-				>
+				<p role="button" className="navbar-burger">
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
@@ -52,11 +47,11 @@ const Navbar: FC<NavbarProps> = ({buttonTitle}) => {
 								<span>{buttonTitle}</span>
 							</p>
 							<p className="button is-dark is-inverted">
-                                <span className='icon'>
-                                    <FontAwesomeIcon icon={faCodeFork} />
-                                </span>
-                                <span>Github</span>
-                            </p>
+								<span className="icon">
+									<FontAwesomeIcon icon={faCodeFork} />
+								</span>
+								<span>Github</span>
+							</p>
 						</div>
 					</div>
 				</div>

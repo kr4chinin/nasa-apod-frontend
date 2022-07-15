@@ -8,8 +8,8 @@ const AppRoutes = () => {
 		<Routes>
 			<Route path="/login" element={<Login />} />
 			<Route path="/registration" element={<Registration />} />
-            <Route path='/feed' element={<Feed />} />
-            <Route path='/' element={<Navigate to='/login' replace/>}/>
+			<Route path="/feed" element={<Feed />} />
+			<Route path="/" element={<Navigate to="/login" replace />} />
 		</Routes>
 	)
 }

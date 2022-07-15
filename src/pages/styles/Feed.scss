@@ -1,3 +1,16 @@
-.feed {
-    margin-top: 10%;
+.feed-container {
+	margin-top: 10%;
+	display: flex;
+	width: 100vw;
+	height: fit-content;
+	justify-content: center;
+	align-items: center;
+
+	.feed {
+		width: 65vw;
+	}
+}
+
+.last-element {
+	height: 10vh;
 }

@@ -33,7 +33,7 @@ const Login = () => {
 
 	return (
 		<>
-            <Navbar buttonTitle='Log in' />
+			<Navbar buttonTitle="Log in" />
 			<div className="login-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to login!</p>}

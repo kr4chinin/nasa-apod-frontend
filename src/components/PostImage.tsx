@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { Grid } from 'react-loader-spinner'
-import './styles/PostItem.scss'
+import './styles/PostImage.scss'
 
 interface PostImageProps {
 	alt: string

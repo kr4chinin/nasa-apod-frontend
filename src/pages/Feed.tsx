@@ -9,17 +9,21 @@ import { Oval } from 'react-loader-spinner'
 import PostItem from '../components/PostItem'
 
 const Feed = () => {
-
 	const {
 		data: feedContentChunk,
 		isFetching,
 		refetch
-	} = useQuery(['feed'], () =>
-		axios.get<any, any>('http://localhost:3000/feed', {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem('auth')}`
-			}
-		})
+	} = useQuery(
+		['feed'],
+		() =>
+			axios.get<any, any>('http://localhost:3000/feed', {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth')}`
+				}
+			}),
+		{
+			refetchOnWindowFocus: false
+		}
 	)
 
 	const [posts, setPosts] = useState<IPost[]>([])
@@ -42,17 +46,25 @@ const Feed = () => {
 	return (
 		<>
 			<Navbar buttonTitle="Log out" />
-			<div className="box feed">
-                {posts.map((post, index) => {
-                    return <PostItem key={index} post={post}/>
-                })}
-			</div>
-			{isFetching ? (
-				<div className="container is-flex is-justify-content-center mt-5">
-					<Oval color="gray" secondaryColor="darkgray" height="4rem" />
+
+			<div className="feed-container">
+				<div className="feed">
+					{posts.length > 0 && (
+						<div className="box">
+							{posts.map((post, index) => {
+								return <PostItem key={index} post={post} />
+							})}
+						</div>
+					)}
+
+					{isFetching ? (
+						<div className="container is-flex is-justify-content-center mt-5">
+							<Oval color="gray" secondaryColor="darkgray" height="4rem" />
+						</div>
+					) : null}
+					<div ref={lastElement} className="last-element" />
 				</div>
-			) : null}
-			<div ref={lastElement} />
+			</div>
 		</>
 	)
 }

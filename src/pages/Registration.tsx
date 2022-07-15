@@ -32,7 +32,7 @@ const Registration = () => {
 
 	return (
 		<>
-            <Navbar buttonTitle='Log in'/>
+			<Navbar buttonTitle="Log in" />
 			<div className="registration-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to sign up!</p>}
