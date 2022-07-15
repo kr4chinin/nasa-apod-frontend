@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import { IUser } from '../models/User'
+import { IUser } from '../models/IUser'
 import './styles/Login.scss'
 
 const Login = () => {
@@ -33,7 +33,7 @@ const Login = () => {
 
 	return (
 		<>
-            <Navbar />
+            <Navbar buttonTitle='Log in' />
 			<div className="login-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to login!</p>}

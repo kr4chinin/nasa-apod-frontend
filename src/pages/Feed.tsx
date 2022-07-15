@@ -1,25 +1,60 @@
-import axios from "axios"
-import { useQuery } from "react-query"
+import axios from 'axios'
+import { useEffect, useState, useRef } from 'react'
+import { useQuery } from 'react-query'
+import { useIntersectionObserver } from 'usehooks-ts'
+import Navbar from '../components/Navbar'
+import { IPost } from '../models/IPost'
+import './styles/Feed.scss'
+import { Oval } from 'react-loader-spinner'
+import PostItem from '../components/PostItem'
 
 const Feed = () => {
 
-    const {data: feedContent, isLoading} = useQuery(['feed'], () =>
-        axios.get('http://localhost:3000/feed', {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('auth')}`
-            }
-        })
-    )
+	const {
+		data: feedContentChunk,
+		isFetching,
+		refetch
+	} = useQuery(['feed'], () =>
+		axios.get<any, any>('http://localhost:3000/feed', {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('auth')}`
+			}
+		})
+	)
 
-    return (
-        <div className="box content">
-            {isLoading ? (
-                <h3>Loading...</h3>
-            ) : (
-                <pre>{JSON.stringify(feedContent?.data, null, 2)}</pre>
-            )}
-        </div>
-    )
+	const [posts, setPosts] = useState<IPost[]>([])
+
+	const lastElement = useRef() as React.MutableRefObject<HTMLDivElement>
+
+	useEffect(() => {
+		if (feedContentChunk) {
+			setPosts(prev => prev.concat(feedContentChunk.data))
+		}
+	}, [feedContentChunk])
+
+	const entry = useIntersectionObserver(lastElement, {})
+	const isVisible = !!entry?.isIntersecting
+
+	useEffect(() => {
+		if (isVisible) refetch()
+	}, [isVisible, refetch])
+
+	return (
+		<>
+			<Navbar buttonTitle="Log out" />
+			<div className="box feed">
+                {posts.map((post, index) => {
+                    return <PostItem key={index} post={post}/>
+                })}
+			</div>
+			{isFetching ? (
+				<div className="container is-flex is-justify-content-center mt-5">
+					<Oval color="gray" secondaryColor="darkgray" height="4rem" />
+				</div>
+			) : null}
+			<div ref={lastElement} />
+		</>
+	)
 }
 
 export default Feed

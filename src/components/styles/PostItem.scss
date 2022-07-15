@@ -1,0 +1,13 @@
+.smooth-image {
+    transition: opacity 1s;
+}
+
+.image-visible {
+    position: inherit;
+    opacity: 1;
+}
+
+.image-hidden {
+    position: absolute;
+    opacity: 0;
+}

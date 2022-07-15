@@ -3,8 +3,13 @@ import {
 	faCodeFork,
 	faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
+import { FC } from 'react'
 
-const Navbar = () => {
+interface NavbarProps {
+    buttonTitle: string
+}
+
+const Navbar: FC<NavbarProps> = ({buttonTitle}) => {
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
@@ -44,7 +49,7 @@ const Navbar = () => {
 								<span className="icon">
 									<FontAwesomeIcon icon={faArrowRightFromBracket} />
 								</span>
-								<span>Log out</span>
+								<span>{buttonTitle}</span>
 							</p>
 							<p className="button is-dark is-inverted">
                                 <span className='icon'>
