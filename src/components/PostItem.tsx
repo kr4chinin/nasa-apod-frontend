@@ -23,7 +23,7 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
 	}
 
 	return (
-		<article className="media">
+		<article className="media m-3">
 			<figure className="media-left">
 				<PostImage src={post.url} alt={post.title} />
 			</figure>

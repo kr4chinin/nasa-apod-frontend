@@ -32,7 +32,7 @@ const Registration = () => {
 
 	return (
 		<>
-			<Navbar buttonTitle="Log in" />
+			<Navbar actionButtonTitle="Log in" actionHandler={() => navigate('/login')}/>
 			<div className="registration-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to sign up!</p>}

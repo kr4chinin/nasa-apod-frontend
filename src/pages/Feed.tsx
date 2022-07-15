@@ -7,6 +7,7 @@ import { IPost } from '../models/IPost'
 import './styles/Feed.scss'
 import { Oval } from 'react-loader-spinner'
 import PostItem from '../components/PostItem'
+import { useNavigate } from 'react-router-dom'
 
 const Feed = () => {
 	const {
@@ -43,9 +44,16 @@ const Feed = () => {
 		if (isVisible) refetch()
 	}, [isVisible, refetch])
 
+    const navigate = useNavigate()
+
+    function handleLogOut() {
+        localStorage.removeItem('auth')
+        navigate('/login')
+    }
+
 	return (
 		<>
-			<Navbar buttonTitle="Log out" />
+			<Navbar actionButtonTitle="Log out" actionHandler={handleLogOut} />
 
 			<div className="feed-container">
 				<div className="feed">

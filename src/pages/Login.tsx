@@ -33,7 +33,7 @@ const Login = () => {
 
 	return (
 		<>
-			<Navbar buttonTitle="Log in" />
+			<Navbar actionButtonTitle="Log in" actionHandler={() => navigate('/login')} />
 			<div className="login-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to login!</p>}

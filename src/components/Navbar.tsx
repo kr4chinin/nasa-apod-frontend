@@ -6,10 +6,11 @@ import {
 import { FC } from 'react'
 
 interface NavbarProps {
-	buttonTitle: string
+	actionButtonTitle: string
+	actionHandler: () => void
 }
 
-const Navbar: FC<NavbarProps> = ({ buttonTitle }) => {
+const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
@@ -40,18 +41,25 @@ const Navbar: FC<NavbarProps> = ({ buttonTitle }) => {
 				<div className="navbar-end">
 					<div className="navbar-item">
 						<div className="buttons">
-							<p className="button is-danger is-inverted">
+							<p
+								className="button is-danger is-inverted"
+								onClick={actionHandler}
+							>
 								<span className="icon">
 									<FontAwesomeIcon icon={faArrowRightFromBracket} />
 								</span>
-								<span>{buttonTitle}</span>
+								<span>{actionButtonTitle}</span>
 							</p>
-							<p className="button is-dark is-inverted">
+							<a
+								className="button is-dark is-inverted"
+								href="https://github.com/kr4chinin"
+								target="_blank"
+							>
 								<span className="icon">
 									<FontAwesomeIcon icon={faCodeFork} />
 								</span>
 								<span>Github</span>
-							</p>
+							</a>
 						</div>
 					</div>
 				</div>
