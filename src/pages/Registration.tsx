@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+import { IUser } from '../models/User'
 import './styles/Registration.scss'
 
 const Registration = () => {
-
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
-    function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
+	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
 		setUsername(e.target.value)
 	}
 
@@ -14,9 +18,19 @@ const Registration = () => {
 		setPassword(e.target.value)
 	}
 
+	const { mutate, isError } = useMutation((newUser: IUser) =>
+		axios.post('http://localhost:3000/registration', newUser).then(() => navigate('/login'))
+	)
+
+    function handleRegistration(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault()
+        mutate({password, username})
+    }
+
 	return (
 		<div className="registration-container">
 			<div className="box content">
+            {isError && <p className='error'>Failed to sign up!</p>}
 				<form>
 					<div className="field">
 						<label className="label">Username</label>
@@ -46,7 +60,12 @@ const Registration = () => {
 					</div>
 					<div className="field">
 						<p className="control">
-							<button className="button is-success">Sign up</button>
+							<button
+								className="button is-info"
+								onClick={handleRegistration}
+							>
+                                Sign up
+                            </button>
 						</p>
 					</div>
 				</form>
