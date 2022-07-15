@@ -3,59 +3,55 @@ import {
 	faCodeFork,
 	faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
-import './Navbar.scss'
 
 const Navbar = () => {
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
-				<a className="navbar-item" href="https://bulma.io">
-					Astronomica
-				</a>
+				<p className="navbar-item">
+					Astronomica 🪐
+				</p>
 
-				<a
+				<p
 					role="button"
 					className="navbar-burger"
-					aria-label="menu"
-					aria-expanded="false"
-					data-target="navbarBasicExample"
 				>
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
-				</a>
+				</p>
 			</div>
 
-			<div id="navbarBasicExample" className="navbar-menu">
+			<div className="navbar-menu">
 				<div className="navbar-start">
-					<a className="navbar-item">Home</a>
-					<a className="navbar-item">Favourites</a>
+					<p className="navbar-item">Home</p>
+					<p className="navbar-item">Favourites</p>
 					<div className="navbar-item has-dropdown is-hoverable">
-						<a className="navbar-link">More</a>
+						<p className="navbar-link">More</p>
 						<div className="navbar-dropdown">
-							<a className="navbar-item">About</a>
-							<a className="navbar-item">Nasa API</a>
-							<a className="navbar-item">Contact</a>
+							<p className="navbar-item">About</p>
+							<p className="navbar-item">Nasa API</p>
+							<p className="navbar-item">Contact</p>
 							<hr className="navbar-divider" />
-							<a className="navbar-item">Report an issue</a>
+							<p className="navbar-item">Report an issue</p>
 						</div>
 					</div>
 				</div>
 				<div className="navbar-end">
 					<div className="navbar-item">
 						<div className="buttons">
-							<a className="button is-danger is-inverted">
+							<p className="button is-danger is-inverted">
 								<span className="icon">
 									<FontAwesomeIcon icon={faArrowRightFromBracket} />
 								</span>
 								<span>Log out</span>
-							</a>
-							<a className="button is-dark is-inverted">
+							</p>
+							<p className="button is-dark is-inverted">
                                 <span className='icon'>
                                     <FontAwesomeIcon icon={faCodeFork} />
                                 </span>
                                 <span>Github</span>
-                            </a>
+                            </p>
 						</div>
 					</div>
 				</div>
