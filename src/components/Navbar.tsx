@@ -45,7 +45,7 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 					<div className="navbar-item has-dropdown is-hoverable">
 						<p className="navbar-link">More</p>
 						<div className="navbar-dropdown">
-							<p className="navbar-item">About</p>
+							<Link to='/about' className="navbar-item">About</Link>
 							<p className="navbar-item">Nasa API</p>
 							<p className="navbar-item">Contact</p>
 							<hr className="navbar-divider" />

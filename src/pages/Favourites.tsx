@@ -36,7 +36,7 @@ const Favourites = () => {
 					{favourites?.data.length > 0 ? (
 						<div className="box">
 							{favourites.data.map((fav: any, index: any) => {
-								return <PostItem key={index} post={fav} />
+								return <PostItem key={index} post={fav} isInFavourites={true}/>
 							})}
 						</div>
 					) : (
@@ -46,7 +46,7 @@ const Favourites = () => {
 							</div>
 							<div className="message-body">
 								You haven't marked any posts as favourite yet! When you see
-								something interesting, you can mark it by pressing star icon in
+								something remarkable, you can mark it by pressing star icon in
 								the right top corner of the post and it will be saved there.
 							</div>
 						</article>

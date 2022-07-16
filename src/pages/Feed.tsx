@@ -60,7 +60,7 @@ const Feed = () => {
 					{posts.length > 0 && (
 						<div className="box">
 							{posts.map((post, index) => {
-								return <PostItem key={index} post={post} />
+								return <PostItem key={index} post={post} isInFavourites={false} />
 							})}
 						</div>
 					)}

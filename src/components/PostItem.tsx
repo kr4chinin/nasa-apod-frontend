@@ -9,15 +9,16 @@ import axios from 'axios'
 
 interface PostItemProps {
 	post: IPost
+    isInFavourites: boolean
 }
 
 interface PostDate {
 	postDate: string
 }
 
-const PostItem: FC<PostItemProps> = ({ post }) => {
+const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
-	const [isFavourite, setIsFavourite] = useState(false)
+	const [isFavourite, setIsFavourite] = useState(isInFavourites)
 
 	function toggleExpand() {
 		setIsExpanded(prev => !prev)
