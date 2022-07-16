@@ -11,6 +11,13 @@ import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 
 const Feed = () => {
+	const [posts, setPosts] = useState<IPost[]>([])
+	const navigate = useNavigate()
+	const lastElement = useRef() as React.MutableRefObject<HTMLDivElement>
+
+	const entry = useIntersectionObserver(lastElement, {})
+	const isVisible = !!entry?.isIntersecting
+
 	const {
 		data: feedContentChunk,
 		isFetching,
@@ -29,24 +36,15 @@ const Feed = () => {
 		}
 	)
 
-	const [posts, setPosts] = useState<IPost[]>([])
-
-	const lastElement = useRef() as React.MutableRefObject<HTMLDivElement>
-
 	useEffect(() => {
 		if (feedContentChunk) {
 			setPosts(prev => prev.concat(feedContentChunk.data))
 		}
 	}, [feedContentChunk])
 
-	const entry = useIntersectionObserver(lastElement, {})
-	const isVisible = !!entry?.isIntersecting
-
 	useEffect(() => {
 		if (isVisible) refetch()
 	}, [isVisible, refetch])
-
-	const navigate = useNavigate()
 
 	function handleLogOut() {
 		localStorage.removeItem('auth')

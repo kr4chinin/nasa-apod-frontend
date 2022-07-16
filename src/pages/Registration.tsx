@@ -12,14 +12,6 @@ const Registration = () => {
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
 
-	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
-		setUsername(e.target.value)
-	}
-
-	function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
-		setPassword(e.target.value)
-	}
-
 	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
 		(newUser: IUser) =>
 			axios
@@ -30,6 +22,14 @@ const Registration = () => {
 	function handleRegistration(e: React.MouseEvent<HTMLButtonElement>) {
 		e.preventDefault()
 		mutate({ password, username })
+	}
+
+	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
+		setUsername(e.target.value)
+	}
+
+	function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
+		setPassword(e.target.value)
 	}
 
 	let isUsername = isUsernameValid(username)

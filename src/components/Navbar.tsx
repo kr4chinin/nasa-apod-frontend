@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-	faCodeFork
-} from '@fortawesome/free-solid-svg-icons'
+import { faCodeFork } from '@fortawesome/free-solid-svg-icons'
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
@@ -14,6 +12,8 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
+	const [isBurgerActive, setIsBurgerActive] = useState(false)
+
 	const { data, isError, isFetching } = useQuery(['username'], () =>
 		axios.get('http://localhost:3000/username', {
 			headers: {
@@ -21,8 +21,6 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 			}
 		})
 	)
-
-	const [isBurgerActive, setIsBurgerActive] = useState(false)
 
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">

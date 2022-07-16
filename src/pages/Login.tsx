@@ -11,14 +11,6 @@ const Login = () => {
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
 
-	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
-		setUsername(e.target.value)
-	}
-
-	function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
-		setPassword(e.target.value)
-	}
-
 	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
 		(user: IUser) =>
 			axios.post('http://localhost:3000/login', user).then(response => {
@@ -30,6 +22,14 @@ const Login = () => {
 	function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
 		e.preventDefault()
 		mutate({ password, username })
+	}
+
+	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
+		setUsername(e.target.value)
+	}
+
+	function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
+		setPassword(e.target.value)
 	}
 
 	return (

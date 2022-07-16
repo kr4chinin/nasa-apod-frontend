@@ -5,7 +5,7 @@ export const isUsernameValid = (username: string) => {
 		username.trim().length !== 0 &&
 		username.trim().length === username.length
 	) {
-        return true
+		return true
 	}
 	return false
 }
@@ -17,7 +17,7 @@ export const isPasswordValid = (password: string) => {
 		password.trim().length !== 0 &&
 		password.trim().length === password.length
 	) {
-        return true
+		return true
 	}
 	return false
 }

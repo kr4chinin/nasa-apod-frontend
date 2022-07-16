@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Oval } from 'react-loader-spinner'
-import { useQuery } from 'react-query'
+import { isError, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import Navbar from '../components/Navbar'
@@ -8,7 +8,12 @@ import PostItem from '../components/PostItem'
 import './styles/Feed.scss'
 
 const Favourites = () => {
-	const { data: favourites, isFetching, error } = useQuery<any, any, any, any>(
+	const {
+		data: favourites,
+		isFetching,
+		isError,
+		error
+	} = useQuery<any, any, any, any>(
 		['favourites'],
 		() =>
 			axios.get<any, any>('http://localhost:3000/favourites', {
@@ -46,7 +51,9 @@ const Favourites = () => {
 								<p>Section is empty ℹ️</p>
 							</div>
 							<div className="message-body">
-								{!error ? 'You haven\'t marked any posts as favourite yet! When you see something remarkable, you can mark it by pressing star icon in the right top corner of the post and it will be saved there.' : 'Error occured!'}
+								{!error
+									? "You haven't marked any posts as favourite yet! When you see something remarkable, you can mark it by pressing star icon in the right top corner of the post and it will be saved there."
+									: 'Error occured!'}
 							</div>
 						</article>
 					)}
@@ -55,7 +62,7 @@ const Favourites = () => {
 							<Oval color="gray" secondaryColor="darkgray" height="4rem" />
 						</div>
 					) : null}
-					{!isFetching && (
+					{!isFetching && isError && (
 						<ErrorMessage
 							errorTitle={error?.response.data.message}
 							errorBody="Ure are not authorized or your authorization token has expired. Please log out (via navbar) and you will be able to log in again or create a new account!"

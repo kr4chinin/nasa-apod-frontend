@@ -9,7 +9,7 @@ import axios from 'axios'
 
 interface PostItemProps {
 	post: IPost
-    isInFavourites: boolean
+	isInFavourites: boolean
 }
 
 interface PostDate {
@@ -19,10 +19,6 @@ interface PostDate {
 const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [isFavourite, setIsFavourite] = useState(isInFavourites)
-
-	function toggleExpand() {
-		setIsExpanded(prev => !prev)
-	}
 
 	const { mutate: addToFavoutites } = useMutation(({ postDate }: PostDate) =>
 		axios.put(
@@ -57,6 +53,10 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	function handleRemoveFavourite() {
 		removeFromFavourites({ postDate: post.date })
 		setIsFavourite(false)
+	}
+
+	function toggleExpand() {
+		setIsExpanded(prev => !prev)
 	}
 
 	const isPostEmpty = post.explanation.length === 0

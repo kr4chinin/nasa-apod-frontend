@@ -11,8 +11,9 @@ const AppRoutes = () => {
 			<Route path="/login" element={<Login />} />
 			<Route path="/registration" element={<Registration />} />
 			<Route path="/feed" element={<Feed />} />
-            <Route path='/favourites' element={<Favourites />} />
-            <Route path='/about' element={<About />} />
+			<Route path="/favourites" element={<Favourites />} />
+			<Route path="/about" element={<About />} />
+
 			<Route path="/" element={<Navigate to="/login" replace />} />
 		</Routes>
 	)

@@ -1,20 +1,15 @@
-import { FC } from "react"
+import { FC } from 'react'
 
 interface AnchorLinkProps {
-    href: string
-    title: string
+	href: string
+	title: string
 }
 
-const AnchorLink: FC<AnchorLinkProps> = ({href, title}) => {
+const AnchorLink: FC<AnchorLinkProps> = ({ href, title }) => {
 	return (
-		<a
-			href={href}
-			rel="noreferrer"
-			target="_blank"
-			className="navbar-item"
-		>
-            {title}
-        </a>
+		<a href={href} rel="noreferrer" target="_blank" className="navbar-item">
+			{title}
+		</a>
 	)
 }
 
