@@ -19,7 +19,7 @@ const Login = () => {
 		setPassword(e.target.value)
 	}
 
-	const { mutate, isError } = useMutation((user: IUser) =>
+	const { mutate, isError, isLoading } = useMutation((user: IUser) =>
 		axios.post('http://localhost:3000/login', user).then(response => {
 			localStorage.setItem('auth', response.data.token)
 			navigate('/feed')
@@ -33,7 +33,10 @@ const Login = () => {
 
 	return (
 		<>
-			<Navbar actionButtonTitle="Log in" actionHandler={() => navigate('/login')} />
+			<Navbar
+				actionButtonTitle="Log in"
+				actionHandler={() => navigate('/login')}
+			/>
 			<div className="login-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to login!</p>}
@@ -66,7 +69,10 @@ const Login = () => {
 						</div>
 						<div className="field">
 							<p className="control">
-								<button className="button is-success" onClick={handleLogin}>
+								<button
+									className={`button is-success ${isLoading && 'is-loading'}`}
+									onClick={handleLogin}
+								>
 									Login
 								</button>
 							</p>

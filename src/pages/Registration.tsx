@@ -19,7 +19,7 @@ const Registration = () => {
 		setPassword(e.target.value)
 	}
 
-	const { mutate, isError } = useMutation((newUser: IUser) =>
+	const { mutate, isError, isLoading } = useMutation((newUser: IUser) =>
 		axios
 			.post('http://localhost:3000/registration', newUser)
 			.then(() => navigate('/login'))
@@ -32,7 +32,10 @@ const Registration = () => {
 
 	return (
 		<>
-			<Navbar actionButtonTitle="Log in" actionHandler={() => navigate('/login')}/>
+			<Navbar
+				actionButtonTitle="Log in"
+				actionHandler={() => navigate('/login')}
+			/>
 			<div className="registration-container">
 				<div className="box content">
 					{isError && <p className="error">Failed to sign up!</p>}
@@ -65,7 +68,10 @@ const Registration = () => {
 						</div>
 						<div className="field">
 							<p className="control">
-								<button className="button is-info" onClick={handleRegistration}>
+								<button
+									className={`button is-info ${isLoading && 'is-loading'}`}
+									onClick={handleRegistration}
+								>
 									Sign up
 								</button>
 							</p>

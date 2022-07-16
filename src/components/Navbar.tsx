@@ -5,6 +5,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import axios from 'axios'
 
 interface NavbarProps {
 	actionButtonTitle: string
@@ -12,6 +14,14 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
+	const { data, isError, isFetching } = useQuery(['username'], () =>
+		axios.get('http://localhost:3000/username', {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('auth')}`
+			}
+		})
+	)
+
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
@@ -26,8 +36,12 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 
 			<div className="navbar-menu">
 				<div className="navbar-start">
-					<Link to='/feed' className="navbar-item">Home</Link>
-					<Link to='/favourites' className="navbar-item">Favourites</Link>
+					<Link to="/feed" className="navbar-item">
+						Home
+					</Link>
+					<Link to="/favourites" className="navbar-item">
+						Favourites
+					</Link>
 					<div className="navbar-item has-dropdown is-hoverable">
 						<p className="navbar-link">More</p>
 						<div className="navbar-dropdown">
@@ -40,6 +54,9 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 					</div>
 				</div>
 				<div className="navbar-end">
+					<p className="navbar-item">
+						{isError || isFetching ? 'not authorized' : `👤 ${data?.data}`}
+					</p>
 					<div className="navbar-item">
 						<div className="buttons">
 							<p
@@ -54,7 +71,7 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 							<a
 								className="button is-dark is-inverted"
 								href="https://github.com/kr4chinin"
-                                rel='noreferrer'
+								rel="noreferrer"
 								target="_blank"
 							>
 								<span className="icon">

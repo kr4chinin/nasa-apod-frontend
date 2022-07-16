@@ -16,7 +16,7 @@ const Favourites = () => {
 				}
 			}),
 		{
-			refetchOnWindowFocus: false
+			refetchOnWindowFocus: true
 		}
 	)
 
@@ -45,7 +45,9 @@ const Favourites = () => {
 								<p>Section is empty ℹ️</p>
 							</div>
 							<div className="message-body">
-								You haven't marked any posts as favourite yet! When you see something interesting, you can mark it by pressing star icon in the right top corner of the post and it will be saved there.
+								You haven't marked any posts as favourite yet! When you see
+								something interesting, you can mark it by pressing star icon in
+								the right top corner of the post and it will be saved there.
 							</div>
 						</article>
 					)}
