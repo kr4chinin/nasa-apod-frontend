@@ -12,7 +12,7 @@ const About = () => {
 
 	return (
 		<>
-			<Navbar actionButtonTitle="Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
 			<div className="about-container">
 				<div className="box content">
 					<p className="title">Information header</p>

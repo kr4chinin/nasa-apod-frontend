@@ -73,7 +73,7 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 				</div>
 				<div className="navbar-end">
 					<p className={`navbar-item ${isBurgerActive && 'ml-2'}`}>
-						{isError || isFetching ? 'not authorized' : `👤 ${data?.data}`}
+						{isError || isFetching ? 'Not authorized' : `👤 ${data?.data}`}
 					</p>
 					<div className="navbar-item">
 						<div className="buttons">

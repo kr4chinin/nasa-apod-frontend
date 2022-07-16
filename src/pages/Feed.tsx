@@ -13,8 +13,9 @@ const Feed = () => {
 	const {
 		data: feedContentChunk,
 		isFetching,
-		refetch
-	} = useQuery(
+		refetch,
+        error
+	} = useQuery<any, any, any, any>(
 		['feed'],
 		() =>
 			axios.get<any, any>('http://localhost:3000/feed', {
@@ -53,7 +54,7 @@ const Feed = () => {
 
 	return (
 		<>
-			<Navbar actionButtonTitle="Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
 
 			<div className="feed-container">
 				<div className="feed">

@@ -38,7 +38,7 @@ const Registration = () => {
 	return (
 		<>
 			<Navbar
-				actionButtonTitle="Log in"
+				actionButtonTitle="📲 Log in"
 				actionHandler={() => navigate('/login')}
 			/>
 			<div className="registration-container">

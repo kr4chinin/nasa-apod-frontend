@@ -29,7 +29,7 @@ const Favourites = () => {
 
 	return (
 		<>
-			<Navbar actionButtonTitle="Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
 
 			<div className="feed-container">
 				<div className="feed">
