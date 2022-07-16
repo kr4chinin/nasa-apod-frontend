@@ -8,13 +8,14 @@ import './styles/Feed.scss'
 import { Oval } from 'react-loader-spinner'
 import PostItem from '../components/PostItem'
 import { useNavigate } from 'react-router-dom'
+import ErrorMessage from '../components/ErrorMessage'
 
 const Feed = () => {
 	const {
 		data: feedContentChunk,
 		isFetching,
 		refetch,
-        error
+		error
 	} = useQuery<any, any, any, any>(
 		['feed'],
 		() =>
@@ -45,12 +46,12 @@ const Feed = () => {
 		if (isVisible) refetch()
 	}, [isVisible, refetch])
 
-    const navigate = useNavigate()
+	const navigate = useNavigate()
 
-    function handleLogOut() {
-        localStorage.removeItem('auth')
-        navigate('/login')
-    }
+	function handleLogOut() {
+		localStorage.removeItem('auth')
+		navigate('/login')
+	}
 
 	return (
 		<>
@@ -61,7 +62,9 @@ const Feed = () => {
 					{posts.length > 0 && (
 						<div className="box">
 							{posts.map((post, index) => {
-								return <PostItem key={index} post={post} isInFavourites={false} />
+								return (
+									<PostItem key={index} post={post} isInFavourites={false} />
+								)
 							})}
 						</div>
 					)}
@@ -72,6 +75,13 @@ const Feed = () => {
 						</div>
 					) : null}
 					<div ref={lastElement} className="last-element" />
+
+					{!isFetching && (
+						<ErrorMessage
+							errorTitle={error?.response.data.message}
+							errorBody="Ure are not authorized or your authorization token has expired. Please log out (via navbar) and you will be able to log in again or create a new account!"
+						/>
+					)}
 				</div>
 			</div>
 		</>

@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-	faCodeFork,
-	faArrowRightFromBracket
+	faCodeFork
 } from '@fortawesome/free-solid-svg-icons'
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
