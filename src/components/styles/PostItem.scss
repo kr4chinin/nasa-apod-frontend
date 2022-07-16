@@ -2,3 +2,15 @@
     color: #485fc7;
     cursor: pointer;
 }
+
+.add-favourite {
+    cursor: pointer;
+    color: gray;
+    transition: 500ms;
+}
+
+.remove-favourite {
+    cursor: pointer;
+    color: yellow;
+    transition: 500ms;
+}

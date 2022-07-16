@@ -53,6 +53,7 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 							<a
 								className="button is-dark is-inverted"
 								href="https://github.com/kr4chinin"
+                                rel='noreferrer'
 								target="_blank"
 							>
 								<span className="icon">

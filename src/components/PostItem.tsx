@@ -4,16 +4,58 @@ import PostImage from './PostImage'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/PostItem.scss'
+import { useMutation } from 'react-query'
+import axios from 'axios'
 
 interface PostItemProps {
 	post: IPost
 }
 
+interface PostDate {
+	postDate: string
+}
+
 const PostItem: FC<PostItemProps> = ({ post }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
+	const [isFavourite, setIsFavourite] = useState(false)
 
 	function toggleExpand() {
 		setIsExpanded(prev => !prev)
+	}
+
+	const { mutate: addToFavoutites } = useMutation(({ postDate }: PostDate) =>
+		axios.put(
+			'http://localhost:3000/add-favourite',
+			{ postDate },
+			{
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('auth')}`
+				}
+			}
+		)
+	)
+
+	const { mutate: removeFromFavourites } = useMutation(
+		({ postDate }: PostDate) =>
+			axios.put(
+				'http://localhost:3000/remove-favourite',
+				{ postDate },
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('auth')}`
+					}
+				}
+			)
+	)
+
+	function handleAddFavourite() {
+		addToFavoutites({ postDate: post.date })
+		setIsFavourite(true)
+	}
+
+	function handleRemoveFavourite() {
+		removeFromFavourites({ postDate: post.date })
+		setIsFavourite(false)
 	}
 
 	const isPostEmpty = post.explanation.length === 0
@@ -45,7 +87,12 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
 				</div>
 			</div>
 			<div className="media-right">
-				<span className="icon">
+				<span
+					className={`icon ${
+						isFavourite ? 'remove-favourite' : 'add-favourite'
+					}`}
+					onClick={isFavourite ? handleRemoveFavourite : handleAddFavourite}
+				>
 					<FontAwesomeIcon icon={faStar} />
 				</span>
 			</div>
