@@ -4,6 +4,7 @@ import {
 	faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
 interface NavbarProps {
 	actionButtonTitle: string
@@ -25,8 +26,8 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 
 			<div className="navbar-menu">
 				<div className="navbar-start">
-					<p className="navbar-item">Home</p>
-					<p className="navbar-item">Favourites</p>
+					<Link to='/feed' className="navbar-item">Home</Link>
+					<Link to='/favourites' className="navbar-item">Favourites</Link>
 					<div className="navbar-item has-dropdown is-hoverable">
 						<p className="navbar-link">More</p>
 						<div className="navbar-dropdown">
