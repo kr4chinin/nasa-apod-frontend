@@ -20,10 +20,11 @@ const Registration = () => {
 		setPassword(e.target.value)
 	}
 
-	const { mutate, isError, isLoading } = useMutation((newUser: IUser) =>
-		axios
-			.post('http://localhost:3000/registration', newUser)
-			.then(() => navigate('/login'))
+	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
+		(newUser: IUser) =>
+			axios
+				.post('http://localhost:3000/registration', newUser)
+				.then(() => navigate('/login'))
 	)
 
 	function handleRegistration(e: React.MouseEvent<HTMLButtonElement>) {
@@ -42,7 +43,7 @@ const Registration = () => {
 			/>
 			<div className="registration-container">
 				<div className="box content">
-					{isError && <p className="error">Failed to sign up!</p>}
+					{isError && <p className="error">{error?.response.data.message}</p>}
 					<form>
 						<div className="field">
 							<label className="label">Username</label>

@@ -19,11 +19,12 @@ const Login = () => {
 		setPassword(e.target.value)
 	}
 
-	const { mutate, isError, isLoading } = useMutation((user: IUser) =>
-		axios.post('http://localhost:3000/login', user).then(response => {
-			localStorage.setItem('auth', response.data.token)
-			navigate('/feed')
-		})
+	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
+		(user: IUser) =>
+			axios.post('http://localhost:3000/login', user).then(response => {
+				localStorage.setItem('auth', response.data.token)
+				navigate('/feed')
+			})
 	)
 
 	function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
@@ -39,7 +40,7 @@ const Login = () => {
 			/>
 			<div className="login-container">
 				<div className="box content">
-					{isError && <p className="error">Failed to login!</p>}
+					{isError && <p className="error">{error?.response.data.message}</p>}
 					<form>
 						<div className="field">
 							<label className="label">Username</label>
