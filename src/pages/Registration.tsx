@@ -23,7 +23,7 @@ const Registration = () => {
 		IUser
 	>(newUser =>
 		axios
-			.post('http://localhost:3000/registration', newUser)
+			.post('https://nasa-apod-project-backend.herokuapp.com/registration', newUser)
 			.then(() => navigate('/login'))
 	)
 

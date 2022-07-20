@@ -17,7 +17,7 @@ const Login = () => {
 		ErrorResponse,
 		IUser
 	>((user: IUser) =>
-		axios.post('http://localhost:3000/login', user).then(response => {
+		axios.post('https://nasa-apod-project-backend.herokuapp.com/login', user).then(response => {
 			localStorage.setItem('auth', response.data.token)
 			navigate('/feed')
 		})

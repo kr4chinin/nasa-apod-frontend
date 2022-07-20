@@ -12,7 +12,7 @@ interface PostItemProps {
 	isInFavourites: boolean
 }
 
-interface PostDate {
+type PostDate = {
 	postDate: string
 }
 
@@ -22,7 +22,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 
 	const { mutate: addToFavoutites } = useMutation(({ postDate }: PostDate) =>
 		axios.put(
-			'http://localhost:3000/add-favourite',
+			'https://nasa-apod-project-backend.herokuapp.com/add-favourite',
 			{ postDate },
 			{
 				headers: {
@@ -35,7 +35,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	const { mutate: removeFromFavourites } = useMutation(
 		({ postDate }: PostDate) =>
 			axios.put(
-				'http://localhost:3000/remove-favourite',
+				'https://nasa-apod-project-backend.herokuapp.com/remove-favourite',
 				{ postDate },
 				{
 					headers: {

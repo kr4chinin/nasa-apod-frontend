@@ -14,10 +14,10 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 	return (
 		<nav className="navbar is-link is-spaced has-shadow is-fixed-top">
 			<div className="navbar-brand">
-				<Link to="/feed" className="navbar-item">
+				<Link to="/feed" className="navbar-item is-size-4">
 					Astronomica 🪐
 				</Link>
-
+                
 				<div
 					onClick={() => {
 						setIsBurgerActive(prev => !prev)

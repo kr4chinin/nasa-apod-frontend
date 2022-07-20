@@ -18,13 +18,14 @@ const Favourites = () => {
 	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['favourites'],
 		() =>
-			axios.get('http://localhost:3000/favourites', {
+			axios.get('https://nasa-apod-project-backend.herokuapp.com/favourites', {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth')}`
 				}
 			}),
 		{
-			refetchOnWindowFocus: true
+			refetchOnWindowFocus: true,
+            refetchInterval: 5000
 		}
 	)
 

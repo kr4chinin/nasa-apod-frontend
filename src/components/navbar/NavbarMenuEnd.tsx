@@ -21,7 +21,7 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 		isError,
 		isFetching
 	} = useQuery(['username'], () =>
-		axios.get('http://localhost:3000/username', {
+		axios.get('https://nasa-apod-project-backend.herokuapp.com/username', {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('auth')}`
 			}

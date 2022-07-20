@@ -6,11 +6,12 @@
 .add-favourite {
 	cursor: pointer;
 	color: gray;
-	transition: 500ms;
+	transition: 600ms;
 }
 
 .remove-favourite {
 	cursor: pointer;
 	color: yellowgreen;
-	transition: 500ms;
+    transform: rotate(360deg);
+	transition: 600ms;
 }

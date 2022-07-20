@@ -26,7 +26,7 @@ const Feed = () => {
 	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['feed'],
 		() =>
-			axios.get('http://localhost:3000/feed', {
+			axios.get('https://nasa-apod-project-backend.herokuapp.com/feed', {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth')}`
 				}
