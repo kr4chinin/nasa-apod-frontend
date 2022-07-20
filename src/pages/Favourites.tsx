@@ -65,7 +65,7 @@ const Favourites = () => {
 					{!isFetching && isError && (
 						<ErrorMessage
 							errorTitle={error?.response.data.message}
-							errorBody="Ure are not authorized or your authorization token has expired. Please log out (via navbar) and you will be able to log in again or create a new account!"
+							errorBody={<p>You are not authorized or your authorization token has expired. Please <b>log out</b> (via navbar) and you will be able to log in again or create a new account!</p>}
 						/>
 					)}
 				</div>
