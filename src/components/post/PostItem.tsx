@@ -26,7 +26,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 			{ postDate },
 			{
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('auth')}`
+					Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 				}
 			}
 		)
@@ -39,7 +39,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 				{ postDate },
 				{
 					headers: {
-						Authorization: `Bearer ${localStorage.getItem('auth')}`
+						Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 					}
 				}
 			)
