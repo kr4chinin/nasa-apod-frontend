@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/PostItem.scss'
 import { useMutation } from 'react-query'
 import axios from 'axios'
+import React from 'react'
 
 interface PostItemProps {
 	post: IPost
@@ -77,7 +78,8 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 						<br />
 						{isExpanded
 							? post.explanation
-							: post.explanation.slice(0, 300) + '...'}
+							: post.explanation.slice(0, 300) +
+							  `${post.explanation.length > 301 ? '...' : ''}`}
 						{!isPostEmpty && post.explanation.length > 300 && (
 							<p className="expand-trigger" onClick={toggleExpand}>
 								{isExpanded ? 'Show less' : 'Show more'}
@@ -101,4 +103,4 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	)
 }
 
-export default PostItem
+export default React.memo(PostItem)

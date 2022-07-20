@@ -1,3 +1,4 @@
+import React from 'react'
 import { FC, useState } from 'react'
 import { Grid } from 'react-loader-spinner'
 import './styles/PostImage.scss'
@@ -25,4 +26,4 @@ const PostImage: FC<PostImageProps> = ({ alt, src }) => {
 	)
 }
 
-export default PostImage
+export default React.memo(PostImage)

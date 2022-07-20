@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/navbar/Navbar'
 import { useLogout } from '../hooks/useLogout'
@@ -124,4 +125,4 @@ const About = () => {
 	)
 }
 
-export default About
+export default React.memo(About) 
