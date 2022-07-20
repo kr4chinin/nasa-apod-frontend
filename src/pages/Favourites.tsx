@@ -20,7 +20,7 @@ const Favourites = () => {
 		() =>
 			axios.get('https://nasa-apod-project-backend.herokuapp.com/favourites', {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('auth')}`
+					Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 				}
 			}),
 		{

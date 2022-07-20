@@ -28,7 +28,7 @@ const Feed = () => {
 		() =>
 			axios.get('https://nasa-apod-project-backend.herokuapp.com/feed', {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('auth')}`
+					Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 				}
 			}),
 		{

@@ -24,7 +24,7 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 	} = useQuery(['username'], () =>
 		axios.get('https://nasa-apod-project-backend.herokuapp.com/username', {
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem('auth')}`
+				Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 			}
 		})
 	)

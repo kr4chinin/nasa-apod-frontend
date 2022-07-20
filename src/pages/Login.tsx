@@ -26,7 +26,7 @@ const Login = () => {
 			{ password, username },
 			{
 				onSuccess: response => {
-					localStorage.setItem('auth', response.data.token)
+					localStorage.setItem('apod-auth', response.data.token)
 					navigate('/feed')
 				}
 			}
