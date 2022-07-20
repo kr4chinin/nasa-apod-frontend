@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { isPasswordValid, isUsernameValid } from '../helpers/validation'
 import { IUser } from '../models/IUser'
+import { ErrorResponse } from '../types/ErrorResponse'
 import './styles/Registration.scss'
 
 const Registration = () => {
@@ -16,12 +17,17 @@ const Registration = () => {
 	})
 	const navigate = useNavigate()
 
-	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
-		(newUser: IUser) =>
-			axios
-				.post('http://localhost:3000/registration', newUser)
-				.then(() => navigate('/login'))
+	const { mutate, isError, isLoading, error, data } = useMutation<
+		any,
+		ErrorResponse,
+		IUser
+	>(newUser =>
+		axios
+			.post('http://localhost:3000/registration', newUser)
+			.then(() => navigate('/login'))
 	)
+
+	console.log(data)
 
 	function handleRegistration(e: React.MouseEvent<HTMLButtonElement>) {
 		e.preventDefault()

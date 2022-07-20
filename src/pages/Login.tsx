@@ -4,6 +4,7 @@ import { useMutation } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { IUser } from '../models/IUser'
+import { ErrorResponse } from '../types/ErrorResponse'
 import './styles/Login.scss'
 
 const Login = () => {
@@ -11,12 +12,15 @@ const Login = () => {
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
 
-	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
-		(user: IUser) =>
-			axios.post('http://localhost:3000/login', user).then(response => {
-				localStorage.setItem('auth', response.data.token)
-				navigate('/feed')
-			})
+	const { mutate, isError, isLoading, error } = useMutation<
+		any,
+		ErrorResponse,
+		IUser
+	>((user: IUser) =>
+		axios.post('http://localhost:3000/login', user).then(response => {
+			localStorage.setItem('auth', response.data.token)
+			navigate('/feed')
+		})
 	)
 
 	function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
@@ -46,7 +50,7 @@ const Login = () => {
 							<label className="label">Username</label>
 							<div className="control has-icons-left">
 								<input
-									className="input is-success"
+									className={`input is-${isError ? 'danger' : 'success'}`}
 									type="text"
 									placeholder="Enter username..."
 									value={username}
@@ -59,8 +63,8 @@ const Login = () => {
 							<label className="label">Password</label>
 							<p className="control has-icons-left">
 								<input
-									className="input"
-									type="text"
+									className={`input ${isError && 'is-danger'}`}
+									type="password"
 									placeholder="Enter password..."
 									value={password}
 									onChange={handlePassword}
