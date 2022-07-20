@@ -77,7 +77,7 @@ const Feed = () => {
 					{!isFetching && (
 						<ErrorMessage
 							errorTitle={error?.response.data.message}
-							errorBody="Ure are not authorized or your authorization token has expired. Please log out (via navbar) and you will be able to log in again or create a new account!"
+							errorBody="You are not authorized or your authorization token has expired. Please log out (via navbar) and you will be able to log in again or create a new account!"
 						/>
 					)}
 				</div>

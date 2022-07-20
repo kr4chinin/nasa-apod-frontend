@@ -10,6 +10,10 @@ import './styles/Registration.scss'
 const Registration = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [isFocused, setIsFocused] = useState({
+		username: false,
+		password: false
+	})
 	const navigate = useNavigate()
 
 	const { mutate, isError, isLoading, error } = useMutation<any, any, any, any>(
@@ -30,6 +34,22 @@ const Registration = () => {
 
 	function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value)
+	}
+
+	function handleUsernameFocus(e: React.FocusEvent<HTMLInputElement>) {
+		setIsFocused({ ...isFocused, username: true })
+	}
+
+	function handlePasswordFocus() {
+		setIsFocused({ ...isFocused, password: true })
+	}
+
+	function handleUsernameBlur() {
+		setIsFocused({ ...isFocused, username: false })
+	}
+
+	function handlePasswordBlur() {
+		setIsFocused({ ...isFocused, password: false })
 	}
 
 	let isUsername = isUsernameValid(username)
@@ -54,10 +74,16 @@ const Registration = () => {
 									placeholder="Enter username..."
 									value={username}
 									onChange={handleUsername}
+									onFocus={handleUsernameFocus}
+									onBlur={handleUsernameBlur}
 								/>
 								<span className="icon is-small is-left">👤</span>
 							</div>
-							<p className={`help is-${isUsername ? 'success' : 'danger'}`}>
+							<p
+								className={`help is-${isUsername ? 'success' : 'danger'} ${
+									!(isFocused.username || isUsername) && 'is-hidden'
+								}`}
+							>
 								{isUsername
 									? 'This username is valid'
 									: 'Username can not be empty and must consists of 4-12 characters'}
@@ -68,14 +94,20 @@ const Registration = () => {
 							<div className="control has-icons-left">
 								<input
 									className={`input is-${isPassword ? 'success' : 'danger'}`}
-									type="text"
+									type="password"
 									placeholder="Enter password..."
 									value={password}
 									onChange={handlePassword}
+									onFocus={handlePasswordFocus}
+									onBlur={handlePasswordBlur}
 								/>
 								<span className="icon is-small is-left">🔐</span>
 							</div>
-							<p className={`help is-${isPassword ? 'success' : 'danger'}`}>
+							<p
+								className={`help is-${isPassword ? 'success' : 'danger'} ${
+									!(isFocused.password || isPassword) && 'is-hidden'
+								}`}
+							>
 								{isPassword
 									? 'This password is valid'
 									: 'Password can not be empty and must consists of 6-15 characters'}
