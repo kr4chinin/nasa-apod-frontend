@@ -5,3 +5,13 @@ export type ErrorResponse = {
 		}
 	}
 }
+
+export type RegistrationSuccessResponse = {
+    message: string
+}
+
+export type LoginSuccessResponse = {
+    data: {
+        token: string
+    }
+}

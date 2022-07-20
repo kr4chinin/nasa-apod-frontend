@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/navbar/Navbar'
 import { isPasswordValid, isUsernameValid } from '../helpers/validation'
 import { IUser } from '../models/IUser'
-import { ErrorResponse } from '../types/ErrorResponse'
+import { ErrorResponse, RegistrationSuccessResponse } from '../types/ErrorResponse'
 import './styles/Registration.scss'
 
 const Registration = () => {
@@ -17,21 +17,25 @@ const Registration = () => {
 	})
 	const navigate = useNavigate()
 
-	const { mutate, isError, isLoading, error, data } = useMutation<
-		any,
+	const { mutate, isError, isLoading, error } = useMutation<
+		RegistrationSuccessResponse,
 		ErrorResponse,
 		IUser
 	>(newUser =>
-		axios
-			.post('https://nasa-apod-project-backend.herokuapp.com/registration', newUser)
-			.then(() => navigate('/login'))
+		axios.post(
+			'https://nasa-apod-project-backend.herokuapp.com/registration',
+			newUser
+		)
 	)
-
-	console.log(data)
 
 	function handleRegistration(e: React.MouseEvent<HTMLButtonElement>) {
 		e.preventDefault()
-		mutate({ password, username })
+		mutate(
+			{ password, username },
+			{
+				onSuccess: () => navigate('/login')
+			}
+		)
 	}
 
 	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {

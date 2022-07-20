@@ -4,6 +4,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { FC } from 'react'
 import React from 'react'
+import { Oval } from 'react-loader-spinner'
 
 interface NavbarMenuEndProps {
 	isBurgerActive: boolean
@@ -31,7 +32,18 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 	return (
 		<div className="navbar-end">
 			<p className={`navbar-item ${isBurgerActive && 'ml-2'}`}>
-				{isError || isFetching ? 'Not authorized' : `👤 ${username?.data}`}
+				{isError ? (
+					'Not authorized'
+				) : isFetching ? (
+					<Oval
+						width="1.2em"
+						height="1.2em"
+						color="gray"
+						secondaryColor="white"
+					/>
+				) : (
+					`👤 ${username?.data}`
+				)}
 			</p>
 			<div className="navbar-item">
 				<div className="buttons">

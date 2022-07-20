@@ -4,7 +4,7 @@ import { useMutation } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/navbar/Navbar'
 import { IUser } from '../models/IUser'
-import { ErrorResponse } from '../types/ErrorResponse'
+import { ErrorResponse, LoginSuccessResponse } from '../types/ErrorResponse'
 import './styles/Login.scss'
 
 const Login = () => {
@@ -13,19 +13,24 @@ const Login = () => {
 	const navigate = useNavigate()
 
 	const { mutate, isError, isLoading, error } = useMutation<
-		any,
+		LoginSuccessResponse,
 		ErrorResponse,
 		IUser
 	>((user: IUser) =>
-		axios.post('https://nasa-apod-project-backend.herokuapp.com/login', user).then(response => {
-			localStorage.setItem('auth', response.data.token)
-			navigate('/feed')
-		})
+		axios.post('https://nasa-apod-project-backend.herokuapp.com/login', user)
 	)
 
 	function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
 		e.preventDefault()
-		mutate({ password, username })
+		mutate(
+			{ password, username },
+			{
+				onSuccess: response => {
+					localStorage.setItem('auth', response.data.token)
+					navigate('/feed')
+				}
+			}
+		)
 	}
 
 	function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
