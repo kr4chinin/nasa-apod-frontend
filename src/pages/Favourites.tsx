@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { Oval } from 'react-loader-spinner'
 import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import Navbar from '../components/Navbar'
 import PostItem from '../components/PostItem'
+import { useLogout } from '../hooks/useLogout'
 import { IPost } from '../models/IPost'
 import { ErrorResponse } from '../types/ErrorResponse'
 import './styles/Feed.scss'
@@ -28,16 +28,11 @@ const Favourites = () => {
 		}
 	)
 
-	const navigate = useNavigate()
-
-	function handleLogOut() {
-		localStorage.removeItem('auth')
-		navigate('/login')
-	}
+    const logout = useLogout()
 
 	return (
 		<>
-			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={logout} />
 
 			<div className="feed-container">
 				<div className="feed">

@@ -1,18 +1,13 @@
-import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import { useLogout } from '../hooks/useLogout'
 import './styles/About.scss'
 
 const About = () => {
-	const navigate = useNavigate()
-
-	function handleLogOut() {
-		localStorage.removeItem('auth')
-		navigate('/login')
-	}
+    const logout = useLogout()
 
 	return (
 		<>
-			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={logout} />
 			<div className="about-container">
 				<div className="box content">
 					<p className="title">Information header</p>

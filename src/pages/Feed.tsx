@@ -7,13 +7,12 @@ import { IPost } from '../models/IPost'
 import './styles/Feed.scss'
 import { Oval } from 'react-loader-spinner'
 import PostItem from '../components/PostItem'
-import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import { ErrorResponse } from '../types/ErrorResponse'
+import { useLogout } from '../hooks/useLogout'
 
 const Feed = () => {
 	const [posts, setPosts] = useState<IPost[]>([])
-	const navigate = useNavigate()
 	const lastElement = useRef() as React.MutableRefObject<HTMLDivElement>
 
 	const entry = useIntersectionObserver(lastElement, {})
@@ -47,14 +46,11 @@ const Feed = () => {
 		if (isVisible) refetch()
 	}, [isVisible, refetch])
 
-	function handleLogOut() {
-		localStorage.removeItem('auth')
-		navigate('/login')
-	}
+    const logout = useLogout()
 
 	return (
 		<>
-			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={handleLogOut} />
+			<Navbar actionButtonTitle="👋🏼 Log out" actionHandler={logout} />
 
 			<div className="feed-container">
 				<div className="feed">
