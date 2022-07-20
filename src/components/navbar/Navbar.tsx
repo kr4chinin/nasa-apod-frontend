@@ -17,7 +17,7 @@ const Navbar: FC<NavbarProps> = ({ actionButtonTitle, actionHandler }) => {
 				<Link to="/feed" className="navbar-item is-size-4">
 					Astronomica 🪐
 				</Link>
-                
+
 				<div
 					onClick={() => {
 						setIsBurgerActive(prev => !prev)

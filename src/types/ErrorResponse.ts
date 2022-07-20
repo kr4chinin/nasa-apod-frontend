@@ -7,11 +7,11 @@ export type ErrorResponse = {
 }
 
 export type RegistrationSuccessResponse = {
-    message: string
+	message: string
 }
 
 export type LoginSuccessResponse = {
-    data: {
-        token: string
-    }
+	data: {
+		token: string
+	}
 }

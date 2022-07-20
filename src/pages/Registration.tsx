@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/navbar/Navbar'
 import { isPasswordValid, isUsernameValid } from '../helpers/validation'
 import { IUser } from '../models/IUser'
-import { ErrorResponse, RegistrationSuccessResponse } from '../types/ErrorResponse'
+import {
+	ErrorResponse,
+	RegistrationSuccessResponse
+} from '../types/ErrorResponse'
 import './styles/Registration.scss'
 
 const Registration = () => {
