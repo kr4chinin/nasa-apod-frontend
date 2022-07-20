@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nasa-apod-frontend/static/css/main.8c6d5992.css",
+    "main.js": "/nasa-apod-frontend/static/js/main.f582f28e.js",
+    "index.html": "/nasa-apod-frontend/index.html",
+    "main.8c6d5992.css.map": "/nasa-apod-frontend/static/css/main.8c6d5992.css.map",
+    "main.f582f28e.js.map": "/nasa-apod-frontend/static/js/main.f582f28e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c6d5992.css",
+    "static/js/main.f582f28e.js"
+  ]
+}
