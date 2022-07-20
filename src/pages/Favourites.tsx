@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Oval } from 'react-loader-spinner'
-import { isError, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import Navbar from '../components/Navbar'
