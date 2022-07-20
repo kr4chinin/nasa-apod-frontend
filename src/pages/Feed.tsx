@@ -9,6 +9,7 @@ import { Oval } from 'react-loader-spinner'
 import PostItem from '../components/PostItem'
 import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
+import { ErrorResponse } from '../types/ErrorResponse'
 
 const Feed = () => {
 	const [posts, setPosts] = useState<IPost[]>([])
@@ -23,10 +24,10 @@ const Feed = () => {
 		isFetching,
 		refetch,
 		error
-	} = useQuery<any, any, any, any>(
+	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['feed'],
 		() =>
-			axios.get<any, any>('http://localhost:3000/feed', {
+			axios.get('http://localhost:3000/feed', {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth')}`
 				}
@@ -76,8 +77,16 @@ const Feed = () => {
 
 					{!isFetching && (
 						<ErrorMessage
-							errorTitle={error?.response.data.message}
-							errorBody={<p>You are not authorized or your authorization token has expired. Please <b>log out</b> (via navbar) and you will be able to log in again or create a new account!</p>}
+							errorTitle={
+								error ? error?.response.data.message : 'Something went wrong'
+							}
+							errorBody={
+								<p>
+									You are not authorized or your authorization token has
+									expired. Please <b>log out</b> (via navbar) and you will be
+									able to log in again or create a new account!
+								</p>
+							}
 						/>
 					)}
 				</div>

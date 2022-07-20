@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import ErrorMessage from '../components/ErrorMessage'
 import Navbar from '../components/Navbar'
 import PostItem from '../components/PostItem'
+import { IPost } from '../models/IPost'
+import { ErrorResponse } from '../types/ErrorResponse'
 import './styles/Feed.scss'
 
 const Favourites = () => {
@@ -13,10 +15,10 @@ const Favourites = () => {
 		isFetching,
 		isError,
 		error
-	} = useQuery<any, any, any, any>(
+	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['favourites'],
 		() =>
-			axios.get<any, any>('http://localhost:3000/favourites', {
+			axios.get('http://localhost:3000/favourites', {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('auth')}`
 				}
@@ -39,7 +41,7 @@ const Favourites = () => {
 
 			<div className="feed-container">
 				<div className="feed">
-					{favourites?.data.length > 0 ? (
+					{favourites && favourites?.data.length > 0 ? (
 						<div className="box">
 							{favourites.data.map((fav: any, index: any) => {
 								return <PostItem key={index} post={fav} isInFavourites={true} />
@@ -57,15 +59,23 @@ const Favourites = () => {
 							</div>
 						</article>
 					)}
+
 					{isFetching ? (
 						<div className="container is-flex is-justify-content-center mt-5">
 							<Oval color="gray" secondaryColor="darkgray" height="4rem" />
 						</div>
 					) : null}
+
 					{!isFetching && isError && (
 						<ErrorMessage
 							errorTitle={error?.response.data.message}
-							errorBody={<p>You are not authorized or your authorization token has expired. Please <b>log out</b> (via navbar) and you will be able to log in again or create a new account!</p>}
+							errorBody={
+								<p>
+									You are not authorized or your authorization token has
+									expired. Please <b>log out</b> (via navbar) and you will be
+									able to log in again or create a new account!
+								</p>
+							}
 						/>
 					)}
 				</div>

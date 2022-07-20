@@ -10,7 +10,6 @@ const queryClient = new QueryClient()
 function App() {
 
     const isMobile = detectMobile()
-
     const [isOpen, setIsOpen] = useState(isMobile)
     
 	return (
