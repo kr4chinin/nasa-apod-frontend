@@ -2,11 +2,11 @@ import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
 import { useQuery } from 'react-query'
 import { useIntersectionObserver } from 'usehooks-ts'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import { IPost } from '../models/IPost'
 import './styles/Feed.scss'
 import { Oval } from 'react-loader-spinner'
-import PostItem from '../components/PostItem'
+import PostItem from '../components/post/PostItem'
 import ErrorMessage from '../components/ErrorMessage'
 import { ErrorResponse } from '../types/ErrorResponse'
 import { useLogout } from '../hooks/useLogout'
@@ -46,7 +46,7 @@ const Feed = () => {
 		if (isVisible) refetch()
 	}, [isVisible, refetch])
 
-    const logout = useLogout()
+	const logout = useLogout()
 
 	return (
 		<>

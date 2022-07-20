@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { IPost } from '../models/IPost'
+import { IPost } from '../../models/IPost'
 import PostImage from './PostImage'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

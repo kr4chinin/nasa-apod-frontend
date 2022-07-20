@@ -2,8 +2,8 @@ import axios from 'axios'
 import { Oval } from 'react-loader-spinner'
 import { useQuery } from 'react-query'
 import ErrorMessage from '../components/ErrorMessage'
-import Navbar from '../components/Navbar'
-import PostItem from '../components/PostItem'
+import Navbar from '../components/navbar/Navbar'
+import PostItem from '../components/post/PostItem'
 import { useLogout } from '../hooks/useLogout'
 import { IPost } from '../models/IPost'
 import { ErrorResponse } from '../types/ErrorResponse'
@@ -28,7 +28,7 @@ const Favourites = () => {
 		}
 	)
 
-    const logout = useLogout()
+	const logout = useLogout()
 
 	return (
 		<>

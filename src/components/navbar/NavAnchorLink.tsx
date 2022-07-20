@@ -1,3 +1,4 @@
+import React from 'react'
 import { FC } from 'react'
 
 interface AnchorLinkProps {
@@ -13,4 +14,4 @@ const AnchorLink: FC<AnchorLinkProps> = ({ href, title }) => {
 	)
 }
 
-export default AnchorLink
+export default React.memo(AnchorLink)

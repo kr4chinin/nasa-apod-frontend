@@ -1,9 +1,9 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import { useLogout } from '../hooks/useLogout'
 import './styles/About.scss'
 
 const About = () => {
-    const logout = useLogout()
+	const logout = useLogout()
 
 	return (
 		<>

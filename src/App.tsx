@@ -8,14 +8,13 @@ import { detectMobile } from './helpers/detectMobile'
 const queryClient = new QueryClient()
 
 function App() {
+	const isMobile = detectMobile()
+	const [isOpen, setIsOpen] = useState(isMobile)
 
-    const isMobile = detectMobile()
-    const [isOpen, setIsOpen] = useState(isMobile)
-    
 	return (
 		<QueryClientProvider client={queryClient}>
 			<HashRouter>
-                <MobileModal isOpen={isOpen} setIsOpen={setIsOpen}></MobileModal>
+				<MobileModal isOpen={isOpen} setIsOpen={setIsOpen}></MobileModal>
 				<AppRoutes />
 			</HashRouter>
 		</QueryClientProvider>
