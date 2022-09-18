@@ -7,6 +7,7 @@ import './styles/PostItem.scss'
 import { useMutation } from 'react-query'
 import axios from 'axios'
 import React from 'react'
+import { HOST } from '../../utils/host'
 
 interface PostItemProps {
 	post: IPost
@@ -23,7 +24,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 
 	const { mutate: addToFavoutites } = useMutation(({ postDate }: PostDate) =>
 		axios.put(
-			'https://nasa-apod-project-backend.herokuapp.com/add-favourite',
+			`${HOST}/add-favourite`,
 			{ postDate },
 			{
 				headers: {
@@ -36,7 +37,7 @@ const PostItem: FC<PostItemProps> = ({ post, isInFavourites }) => {
 	const { mutate: removeFromFavourites } = useMutation(
 		({ postDate }: PostDate) =>
 			axios.put(
-				'https://nasa-apod-project-backend.herokuapp.com/remove-favourite',
+				`${HOST}/remove-favourite`,
 				{ postDate },
 				{
 					headers: {

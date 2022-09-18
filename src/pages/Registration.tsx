@@ -9,7 +9,9 @@ import {
 	ErrorResponse,
 	RegistrationSuccessResponse
 } from '../types/ErrorResponse'
+import { HOST } from '../utils/host'
 import './styles/Registration.scss'
+
 
 const Registration = () => {
 	const [username, setUsername] = useState('')
@@ -26,7 +28,7 @@ const Registration = () => {
 		IUser
 	>(newUser =>
 		axios.post(
-			'https://nasa-apod-project-backend.herokuapp.com/registration',
+			`${HOST}/registration`,
 			newUser
 		)
 	)
@@ -76,7 +78,7 @@ const Registration = () => {
 			/>
 			<div className="registration-container">
 				<div className="box content">
-					{isError && <p className="error">{error?.response.data.message}</p>}
+					{isError && <p className="error">{error?.response.data?.message}</p>}
 					<form>
 						<div className="field">
 							<label className="label">Username</label>

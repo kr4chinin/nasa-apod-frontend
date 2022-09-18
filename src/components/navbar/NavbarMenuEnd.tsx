@@ -22,7 +22,7 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 		isError,
 		isFetching
 	} = useQuery(['username'], () =>
-		axios.get('https://nasa-apod-project-backend.herokuapp.com/username', {
+		axios.get('https://nasa-backend-apod.herokuapp.com/username', {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 			}
@@ -31,7 +31,7 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 
 	return (
 		<div className="navbar-end">
-			<p className={`navbar-item ${isBurgerActive && 'ml-2'}`}>
+			<div className={`navbar-item ${isBurgerActive && 'ml-2'}`}>
 				{isError ? (
 					'Not authorized'
 				) : isFetching ? (
@@ -44,7 +44,7 @@ const NavbarMenuEnd: FC<NavbarMenuEndProps> = ({
 				) : (
 					`👤 ${username?.data}`
 				)}
-			</p>
+			</div>
 			<div className="navbar-item">
 				<div className="buttons">
 					<p

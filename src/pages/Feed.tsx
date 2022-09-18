@@ -10,6 +10,7 @@ import PostItem from '../components/post/PostItem'
 import ErrorMessage from '../components/ErrorMessage'
 import { ErrorResponse } from '../types/ErrorResponse'
 import { useLogout } from '../hooks/useLogout'
+import { HOST } from '../utils/host'
 
 const Feed = () => {
 	const [posts, setPosts] = useState<IPost[]>([])
@@ -26,7 +27,7 @@ const Feed = () => {
 	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['feed'],
 		() =>
-			axios.get('https://nasa-apod-project-backend.herokuapp.com/feed', {
+			axios.get(`${HOST}/feed`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 				}

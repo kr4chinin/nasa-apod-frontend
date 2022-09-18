@@ -7,6 +7,7 @@ import PostItem from '../components/post/PostItem'
 import { useLogout } from '../hooks/useLogout'
 import { IPost } from '../models/IPost'
 import { ErrorResponse } from '../types/ErrorResponse'
+import { HOST } from '../utils/host'
 import './styles/Feed.scss'
 
 const Favourites = () => {
@@ -18,7 +19,7 @@ const Favourites = () => {
 	} = useQuery<{ data: IPost[] }, ErrorResponse>(
 		['favourites'],
 		() =>
-			axios.get('https://nasa-apod-project-backend.herokuapp.com/favourites', {
+			axios.get(`${HOST}/favourites`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('apod-auth')}`
 				}

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/navbar/Navbar'
 import { IUser } from '../models/IUser'
 import { ErrorResponse, LoginSuccessResponse } from '../types/ErrorResponse'
+import { HOST } from '../utils/host'
 import './styles/Login.scss'
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
 		ErrorResponse,
 		IUser
 	>((user: IUser) =>
-		axios.post('https://nasa-apod-project-backend.herokuapp.com/login', user)
+		axios.post(`${HOST}/login`, user)
 	)
 
 	function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
